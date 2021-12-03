@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>구구단</title>
+    <!-- 배포시 development를 production으로 바꾸기 -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- babel 추가 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
+  </head>
+  <body>
+    <div id="root"></div> 
+    <script type="text/babel">
+      // class 방법
+      // class GuGuDan extends React.Component {
+      //
+      // }
+
+      // const GuGuDan이 통째로 재실행 된다.(렌더링)
+      const GuGuDan = () => {
+        // state 선언
+        // state를 하나씩 분리
+        // 반드시 컴포넌트 안에 위치해야 함
+        const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9));
+        const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
+        const [value, setValue] = React.useState('');
+        const [result, setResult] = React.useState('');
+        const inputRef = React.useRef(null); // ref 선언방식
+
+        const onSubmitForm = (e) => {
+          e.preventDefault();
+          if (parseInt(value) === first * second) {
+            // 옛날 result 사용하는 경우
+            setResult((prevResult) => {
+              return '정답: ' + value
+            });
+            setFirst(Math.ceil(Math.random() * 9));
+            setSecond(Math.ceil(Math.random() *9));
+            setValue('');
+            inputRef.current.focus(); // hooks 방식에서는 current를 붙여주어야 한다.
+          } else {
+            setResult('땡');
+            setValue('');
+            inputRef.current.focus();
+          }
+        };
+
+        const onChangeInput = (e) => {
+          setValue(e.target.value);
+        };
+
+        return (
+          <>
+            <div>{first}곱하기{second}는?</div>
+            <form onSubmit={onSubmitForm}>
+              <input ref={inputRef} onChange={onChangeInput} value={value} />
+              <button>입력!</button>
+            </form>
+            <div id="result">{result}</div>
+          </>
+        );
+      }
+
+    </script>
+    <script type="text/babel">
+      ReactDOM.render(<GuGuDan/>,document.querySelector('#root'));
+    </script>
+  </body>
+</html>
