@@ -1,0 +1,11 @@
+.App {
+  text-align: center;
+}
+
+.jumbotron {
+  padding: 30px 20px;
+  margin-bottom: 30px;
+  background: url('./shop-main.jpg') center no-repeat;
+  background-size: cover;
+  color: #fff;
+}
