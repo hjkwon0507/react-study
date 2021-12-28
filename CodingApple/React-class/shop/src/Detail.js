@@ -15,7 +15,7 @@ function Detail(props) {
 
   let [alert, setAlert] = useState(true);
   let [inputData, setInputData] = useState('');
-  
+
   useEffect(()=>{
     // 2초 후에 alert창을 안보이게
     let Timer = setTimeout(()=>{ setAlert(false) }, 2000);
@@ -58,13 +58,22 @@ function Detail(props) {
           <h4 className="pt-5">{findProduct.title}</h4>
           <p>{findProduct.content}</p>
           <p>{findProduct.price}원</p>
-          <button className="btn btn-danger">주문하기</button> 
+
+          <Info stock={props.stock}></Info>
+
+          <button className="btn btn-danger" onClick={()=>{ props.setStock([9,11,12]) }}>주문하기</button> 
           <button className="btn btn-danger" onClick={()=>{
             history.goBack();
           }}>뒤로가기</button> 
         </div>
       </div>
     </div> 
+  )
+}
+
+function Info(props){
+  return (
+    <p>재고 : {props.stock[0]}</p>
   )
 }
 

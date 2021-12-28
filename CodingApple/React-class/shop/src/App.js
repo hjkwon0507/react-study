@@ -13,6 +13,7 @@ function App() {
 
   let [products, setProducts] = useState(Data);
   let [loading, setLoading] = useState(false);
+  let [stock, setStock] = useState([10,11,12]);
 
   return (
     <div className="App">
@@ -89,7 +90,7 @@ function App() {
 
       
       <Route path="/detail/:id">
-        <Detail products={products} />
+        <Detail products={products} stock={stock} setStock={setStock} />
       </Route>
 
       <Route path="/:id"> 
