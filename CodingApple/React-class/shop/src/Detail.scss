@@ -1,0 +1,43 @@
+$메인칼라 : #ff0000;
+
+.red {
+  color: $메인칼라;
+}
+
+@mixin myAlert() {
+  background: #eeeeee;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
+.my-alert {
+  @include myAlert();
+}
+.my-alert p {
+  margin-bottom: 0;
+}
+
+.my-alert-yellow {
+  @extend .my-alert; // .my-alert에 있는 모든 속성을 붙여 넣어주세요
+  background: #ffe591;
+}
+
+
+
+// div.container h4 {
+//   color : blue;
+// }
+// div.container p {
+//   color: green;
+// }
+
+// div.container {
+//   h4 {
+//     color : blue;
+//   }
+//   p {
+//     color: green;
+//   }
+// }

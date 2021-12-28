@@ -4,12 +4,15 @@ import {useState} from 'react';
 import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
 import './App.css';
 import Data from './data.js';
+import Detail from './Detail.js';
+import axios from 'axios'
 
 import { Link, Route, Switch } from 'react-router-dom';
 
 function App() {
 
   let [products, setProducts] = useState(Data);
+  let [loading, setLoading] = useState(false);
 
   return (
     <div className="App">
@@ -19,8 +22,8 @@ function App() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
+              <Nav.Link as={Link} to="/">Home</Nav.Link>
+              <Nav.Link as={Link} to="/detail">Detail</Nav.Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -34,7 +37,7 @@ function App() {
       </Navbar>
 
       
-
+    <Switch>
       <Route exact path="/">
         <div className="jumbotron">
           <h1>20% Season Off</h1>
@@ -46,6 +49,7 @@ function App() {
             <Button variant="primary">Learn more</Button>
           </p>
         </div>
+
         <div className="container">
           <div className="row">
             {
@@ -54,26 +58,46 @@ function App() {
               })
             }
           </div>
+          
+          <button className="btn btn-primary" onClick={()=>{
+
+            axios.post('서버URL', { id : 'codingapple', pw : 1234 }).then();
+
+            setLoading(true);
+            axios.get('https://codingapple1.github.io/shop/data2.json')
+            .then((result)=>{
+              console.log(result.data);
+              setProducts([...products, ...result.data]);
+              setLoading(false);
+            })
+            .catch(()=>{              
+              setLoading(false);
+            })
+
+          }}>더보기</button>
+          {
+            loading === true
+            ? (
+              <div>
+                <p>~~로딩중입니다~~</p>
+              </div>
+              )
+            : null
+          }
         </div>
       </Route>
-      <Route path="/detail">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6">
-              <img src="https://www.cartier.co.kr/content/dam/rcq/car/21/82/26/3/2182263.png.scale.314.high.%ED%83%B1%ED%81%AC-%EB%A8%B8%EC%8A%A4%ED%8A%B8-%EC%9B%8C%EC%B9%98-%EC%8A%A4%ED%8B%B8.jpg" width="100%" />
-            </div>
-            <div className="col-md-6 mt-4">
-              <h4 className="pt-5">상품명</h4>
-              <p>상품설명</p>
-              <p>120000원</p>
-              <button className="btn btn-danger">주문하기</button> 
-            </div>
-          </div>
-       </div> 
-      </Route>
-      {/* <Route path="/어쩌구" component={Modal} ></Route> */}
 
       
+      <Route path="/detail/:id">
+        <Detail products={products} />
+      </Route>
+
+      <Route path="/:id"> 
+        <div>아무거나 적었을 때 이거 보여주셈</div>
+      </Route>
+
+    </Switch>
+
     </div>
   );
 }
