@@ -1,6 +1,6 @@
 /*eslint-disable*/
 
-import {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
 import './App.css';
 import Data from './data.js';
@@ -8,6 +8,8 @@ import Detail from './Detail.js';
 import axios from 'axios'
 
 import { Link, Route, Switch } from 'react-router-dom';
+
+export let stockContext = React.createContext();
 
 function App() {
 
@@ -52,13 +54,17 @@ function App() {
         </div>
 
         <div className="container">
-          <div className="row">
-            {
-              products.map((a, i)=>{
-                return <Card products={products[i]} key={i} /> // {a}로 변경가능
-              })
-            }
-          </div>
+          <stockContext.Provider value={stock}> 
+
+            <div className="row">
+              {
+                products.map((a, i)=>{
+                  return <Card products={products[i]} key={i} /> // {a}로 변경가능
+                })
+              }
+            </div>
+
+          </stockContext.Provider>
           
           <button className="btn btn-primary" onClick={()=>{
 
@@ -90,12 +96,16 @@ function App() {
 
       
       <Route path="/detail/:id">
+
+      <stockContext.Provider value={stock}> 
         <Detail products={products} stock={stock} setStock={setStock} />
+      </stockContext.Provider>
+
       </Route>
 
-      <Route path="/:id"> 
+      {/* <Route path="/:id"> 
         <div>아무거나 적었을 때 이거 보여주셈</div>
-      </Route>
+      </Route> */}
 
     </Switch>
 
@@ -104,13 +114,20 @@ function App() {
 }
 
 function Card(props) {
+
   return(
       <div className="col-md-4">
         <img src={ props.products.src } width="100%" />
         <h4>{ props.products.title }</h4>
         <p>{ props.products.content } & { props.products.price }</p>
+        <Test></Test>
       </div>
   )
+}
+
+function Test(){
+  let stock = useContext(stockContext); // useContext(범위이름)
+  return <p>{stock}</p>
 }
 
 export default App;

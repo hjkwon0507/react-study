@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import './Detail.scss';
+import {stockContext} from './App.js';
 
 let Box = styled.div`
   padding : 20px;
@@ -15,6 +16,7 @@ function Detail(props) {
 
   let [alert, setAlert] = useState(true);
   let [inputData, setInputData] = useState('');
+  
 
   useEffect(()=>{
     // 2초 후에 alert창을 안보이게
@@ -52,14 +54,14 @@ function Detail(props) {
       
       <div className="row">
         <div className="col-md-6">
-        <img src={ findProduct.src } width="100%" />
+        <img src={ findProduct.src } width="100%" alt="제품사진" />
         </div>
         <div className="col-md-6 mt-4">
           <h4 className="pt-5">{findProduct.title}</h4>
           <p>{findProduct.content}</p>
           <p>{findProduct.price}원</p>
 
-          <Info stock={props.stock}></Info>
+          <Info></Info>
 
           <button className="btn btn-danger" onClick={()=>{ props.setStock([9,11,12]) }}>주문하기</button> 
           <button className="btn btn-danger" onClick={()=>{
@@ -71,9 +73,12 @@ function Detail(props) {
   )
 }
 
-function Info(props){
+function Info(){
+
+  let stock = useContext(stockContext);
+  
   return (
-    <p>재고 : {props.stock[0]}</p>
+    <p>재고 : {stock[0]}</p>
   )
 }
 
