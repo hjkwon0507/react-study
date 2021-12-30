@@ -12,8 +12,6 @@ function App() {
   return (
     <Layout>
       <div>콘텐츠!</div>
-      <button onClick={onClick}>True?</button>
-      {value === true && <div>True!</div>}
     </Layout>
   );
 }
