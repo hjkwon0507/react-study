@@ -1,26 +1,23 @@
 import Hello from './Hello';
-import Button from './Button';
 import { useState } from 'react';
+import styles from './App.module.css';
 
 function App() {
-  const [good, setGood] = useState(0);
-  const [bad, setBad] = useState(0);
-  const [merry, setMerry] = useState(0);
+  const [value, setValue] = useState(true);
 
-  function goodClick() {
-    setGood(good + 1);
-  };
-  function badClick() {
-    setBad(bad + 1);
-  };
-  function merryClick() {
-    setMerry(merry + 1);
-  };
+  function onClick() {
+    setValue(!value);
+  }
 
   return (
     <div>
-      <Hello />
-      <Button goodClick={goodClick} badClick={badClick} merryClick={merryClick} good={good} bad={bad} merry={merry}  />
+      <div className={value ? styles.blue : styles.red}>
+        {value 
+          ? 'True에요!' 
+          : 'False에요!'
+        }
+      </div>
+      <button onClick={onClick}>색바꾸기!</button>
     </div>
   );
 }
