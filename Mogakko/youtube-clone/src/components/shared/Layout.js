@@ -4,18 +4,18 @@ import Menu from './Menu.js';
 import { useState } from 'react';
 
 function Layout({ children, activeMenu }) {
-  const [menu, setMenu] = useState(false);
+  const [open, setOpen] = useState(true);
+
+  function onChangeOpen() {
+    setOpen(!open);
+  }
 
   return (
     <div className={styles.container}>
-      <Header menu={menu} setMenu={setMenu} />
+      <Header onChangeOpen={onChangeOpen} />
       <div className={styles.layout}>
-        {
-          menu === true
-          ? <Menu />
-          : null
-        }
-        <div className={styles.contents}>{children}</div>
+        <Menu activeMenu={activeMenu} open={open} />
+        <div className={open ? styles.contents : styles.closed}>{children}</div>
       </div>
     </div>
   );

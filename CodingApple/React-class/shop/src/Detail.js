@@ -3,6 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import './Detail.scss';
 import {stockContext} from './App.js';
+import { Nav } from 'react-bootstrap';
 
 let Box = styled.div`
   padding : 20px;
@@ -16,6 +17,8 @@ function Detail(props) {
 
   let [alert, setAlert] = useState(true);
   let [inputData, setInputData] = useState('');
+
+  let [currentTab, setCurrentTab] = useState(0);
   
 
   useEffect(()=>{
@@ -69,9 +72,27 @@ function Detail(props) {
           }}>뒤로가기</button> 
         </div>
       </div>
+
+      <Nav className="mt-5" variant="tabs" defaultActiveKey="link-0"> 
+        <Nav.Item>
+          <Nav.Link eventKey="link-0" onClick={()=>{ setCurrentTab(0) }}>Active</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-1" onClick={()=>{ setCurrentTab(1) }}>Option 2</Nav.Link>
+        </Nav.Item>
+      </Nav>
+        
+      <TabContent />
+
     </div> 
   )
 }
+
+function TabContent(){
+  
+}
+
+
 
 function Info(){
 
