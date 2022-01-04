@@ -5,6 +5,8 @@ import './Detail.scss';
 import {stockContext} from './App.js';
 import { Nav } from 'react-bootstrap';
 
+import { CSSTransition } from "react-transition-group";
+
 let Box = styled.div`
   padding : 20px;
 `;
@@ -19,6 +21,7 @@ function Detail(props) {
   let [inputData, setInputData] = useState('');
 
   let [currentTab, setCurrentTab] = useState(0);
+  let [switchOn, setSwitchOn] = useState(false);
   
 
   useEffect(()=>{
@@ -75,21 +78,37 @@ function Detail(props) {
 
       <Nav className="mt-5" variant="tabs" defaultActiveKey="link-0"> 
         <Nav.Item>
-          <Nav.Link eventKey="link-0" onClick={()=>{ setCurrentTab(0) }}>Active</Nav.Link>
+          <Nav.Link eventKey="link-0" onClick={()=>{ setSwitchOn(false); setCurrentTab(0) }}>Option 0</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-1" onClick={()=>{ setCurrentTab(1) }}>Option 2</Nav.Link>
+          <Nav.Link eventKey="link-1" onClick={()=>{ setSwitchOn(false); setCurrentTab(1) }}>Option 1</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-2" onClick={()=>{ setSwitchOn(false); setCurrentTab(2) }}>Option 2</Nav.Link>
         </Nav.Item>
       </Nav>
         
-      <TabContent />
+      <CSSTransition in={switchOn} classNames="wow" timeout={500}>
+        <TabContent currentTab={currentTab} setSwitchOn={setSwitchOn} />
+      </CSSTransition>
 
     </div> 
   )
 }
 
-function TabContent(){
-  
+function TabContent(props){
+  // TabContent 컴포넌트가 등장할 때 실행
+  useEffect(()=>{
+    props.setSwitchOn(true);
+  })
+
+  if (props.currentTab === 0) {
+    return <div>0번째 내용입니다.</div>
+  } else if (props.currentTab === 1) {
+    return <div>1번째 내용입니다.</div>
+  } else if (props.currentTab === 2) {
+    return <div>2번째 내용입니다.</div>
+  }
 }
 
 
