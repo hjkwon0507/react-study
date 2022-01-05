@@ -97,6 +97,7 @@ function Detail(props) {
 }
 
 function TabContent(props){
+  
   // TabContent 컴포넌트가 등장할 때 실행
   useEffect(()=>{
     props.setSwitchOn(true);
