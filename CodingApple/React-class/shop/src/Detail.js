@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import './Detail.scss';
 import {stockContext} from './App.js';
 import { Nav } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 import { CSSTransition } from "react-transition-group";
 
@@ -69,7 +70,11 @@ function Detail(props) {
 
           <Info></Info>
 
-          <button className="btn btn-danger" onClick={()=>{ props.setStock([9,11,12]) }}>주문하기</button> 
+          <button className="btn btn-danger" onClick={()=>{ 
+            props.setStock([9,11,12]);
+            props.dispatch({type : '항목추가', payload : {id: 2, name: '새로운 상품', quan : 1}}); 
+            history.push('/cart'); // 장바구니 페이지로 이동
+          }}>주문하기</button> 
           <button className="btn btn-danger" onClick={()=>{
             history.goBack();
           }}>뒤로가기</button> 
@@ -123,4 +128,12 @@ function Info(){
   )
 }
 
-export default Detail;
+// redux store 데이터 가져와서 props로 변환해주는 함수
+function state를props화(state){
+  return {
+    state : state.reducer,
+    alert열렸니 : state.reducer2 
+  }
+}
+
+export default connect(state를props화)(Detail);
