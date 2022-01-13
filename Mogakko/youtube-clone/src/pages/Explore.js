@@ -2,6 +2,7 @@ import Layout from '../components/shared/Layout';
 import ContentsLayout from '../components/shared/ContentsLayout';
 import youtubeData from '../data/youtubeData.json';
 import ExploreCard from '../components/explore/ExploreCard';
+import styles from './Explore.module.css';
 
 function Explore() {
   return (
