@@ -3,19 +3,19 @@ import styles from './Home.module.css';
 import youtubeData from '../data/youtubeData.json';
 import HomeFilter from '../components/home/HomeFilter';
 import HomeCard from '../components/home/HomeCard';
-import { useState } from 'react';
+import {useState} from 'react';
 
-const target = ['전체', 'BTS', 'LISA', '아이폰'];
+const target = ['전체', 'Music', 'Entertainment', 'Comedy'];
 
 function Home() {
   const [filter, setFilter] = useState('전체');
 
-  function mapFunc(data, index) {
+  function mapFunc(data, index){
     return (
       <HomeFilter
         filter={filter}
         text={data}
-        onClickFilter={function () {
+        onClickFilter={function(){
           setFilter(data);
         }}
         key={`home-filter-${index}`}
@@ -23,14 +23,8 @@ function Home() {
     );
   }
 
-  function filterFunc(data) {
-    if (
-      filter === '전체' ||
-      data.title.includes(filter) ||
-      data.description.includes(filter)
-    ) {
-			return true;
-		}      
+  function filterFunc(data){
+    if(filter==='전체' || data.category===filter) return true;
     return false;
   }
 
