@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.1/redux.js" integrity="sha512-aU+9st6E3LYPknXJiOkhUXxYz/QbB1IDf1YUYzCCbgiwOCu2g/1pH+68ROdxC3clouCOVfO6u2g7qoB43rfmQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
+  <body>
+    <div id="subject"></div>
+    <div id="toc"></div>
+    <div id="control"></div>
+    <div id="content"></div>
+    <script>
+function subject(){
+  document.querySelector('#subject').innerHTML = `
+  <header>
+    <h1>WEB</h1>
+    Hello, WEB!
+  </header>
+  `;
+}
+function TOC(){
+  let state = store.getState();
+  // console.log(state);
+  if(state.mode === 'create'){
+    document.querySelector('#content').innerHTML = `
+    <article>
+      <form onsubmit="
+        event.preventDefault();
+        let title = this.title.value;
+        let desc = this.desc.value;
+        store.dispatch({
+          type: 'CREATE',
+          title: _title,
+          desc: _desc
+        })
+      ">
+        <p>
+          <input type="text" name="title"
+          placeholder="title">  
+        </p>
+        <p>
+          <textarea name="desc"
+          placeholder="description"></textarea>
+        </p>
+        <p>
+          <input type="submit">
+        </p>
+      </form>
+    </article>
+    `;
+  } else if(state.mode === 'read'){
+    let i = 0;
+    let liTags = '';
+    while(i<state.contents.length){
+      liTags = liTags + `
+        <li>
+          <a onclick="
+          event.preventDefault();
+              let action = {type:: 'SELECT', id: ${state.contents[i].id}}
+              store.dispatch(action);
+            " href="${state.contents[i].id}"
+          >
+            ${state.contents[i].title}
+          </a>
+        </li>`
+      i = i + 1;
+    }
+  }
+  document.querySelector('#toc').innerHTML = `
+  <nav>
+    <ol>
+      ${liTags}
+    </ol>
+  </nav>
+  `;
+}
+function control(){
+  document.querySelector('#control').innerHTML = `
+  <ul>
+    <li><a onclick="
+      event.preventDefault();
+
+    " href="/create">create</a></li>
+    <li><input type="button" value="delete"></input></li>
+  </ul>
+  `;
+}
+function article(){
+  document.querySelector('#content').innerHTML = `
+  <article>
+    <h2>HTML</h2>
+    HTML is ...
+  </article>
+  `;
+}
+function reducer(state, action){
+  if(state === undefined){
+    return {
+      mode: 'create',
+      selected_id: null,
+      contents: [
+        {id: 1, title: 'HTML', desc: 'HTML is ..'},
+        {id: 2, title: 'CSS', desc: 'CSS is ..'}
+      ]
+    }
+  }
+  let newState = {};
+  if(action.type === 'SELECT'){
+    newState = Object.assign({}, state, {selected_id: action.id});
+  }
+  console.log(state, action);
+  return newState;
+}
+let store = Redux.createStore(reducer);
+subject();
+TOC();
+control();
+article();
+    </script>
+  </body>
+</html>
