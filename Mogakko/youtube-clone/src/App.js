@@ -1,20 +1,9 @@
-import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Layout from './components/shared/Layout';
-import Home from './pages/Home';
-import Explore from './pages/Explore';
-import Subscription from './pages/Subscription';
-import Assignment from './pages/Assignment';
+import youtubeData from './data/youtubeData.json';
 
 function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/explore" element={<Explore />} />
-      <Route path="/subscription" element={<Subscription />} />
-      <Route path="/assignment" element={<Assignment />} />
-    </Routes>
-  );
+  console.log('youtubeData: ', youtubeData);
+  return <div>시작</div>
 }
 
 export default App;
