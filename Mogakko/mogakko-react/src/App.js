@@ -1,23 +1,24 @@
-import Hello from './Hello';
-import { useState } from 'react';
-import styles from './App.module.css';
+import {useState} from 'react';
 
 function App() {
-  const [value, setValue] = useState(true);
+  const [number, setNumber] = useState(0);
 
-  function onClick() {
-    setValue(!value);
+  function plus(){
+    setNumber(number+1);
+  }
+  function minus(){
+    setNumber(number-1);
+  }
+  function multiple(){
+    setNumber(number*2);
   }
 
   return (
     <div>
-      <div className={value ? styles.blue : styles.red}>
-        {value 
-          ? 'True에요!' 
-          : 'False에요!'
-        }
-      </div>
-      <button onClick={onClick}>색바꾸기!</button>
+      <div>값 : {number}</div>
+      <button onClick={plus}>+1</button>
+      <button onClick={minus}>-1</button>
+      <button onClick={multiple}>*2</button>
     </div>
   );
 }
