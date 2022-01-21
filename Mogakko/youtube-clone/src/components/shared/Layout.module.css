@@ -12,6 +12,7 @@
 .layout {
   display: flex;
   flex: 1;
+  margin-top: 56px;
   border: 1px solid red;
 }
 .contents {
