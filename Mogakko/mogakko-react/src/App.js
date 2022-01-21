@@ -2,6 +2,7 @@ import {useState} from 'react';
 import Button from './Button';
 import Layout from './Layout';
 import Gugudan from './Gugudan';
+import styles from './App.module.css';
 
 function App() {
   const [number, setNumber] = useState(1);
@@ -19,6 +20,9 @@ function App() {
   function onClickToggle(){
     setIsTrue(!isTrue);
   }
+  function onClickColor(){
+    setIsTrue(!isTrue);
+  }
 
   return (
     <Layout>
@@ -28,6 +32,19 @@ function App() {
       <Button onClick={onClickMultiply} text="*2" />
       <Button onClick={onClickToggle} text="True?" />
       {isTrue === true && <div>True!</div>}
+      <Button onClick={onClickColor} text="True?" />
+      <div className=
+        {
+          isTrue === true
+          ? styles.red
+          : styles.blue
+        }
+      >{
+        isTrue === true
+        ? 'True!'
+        : 'False!'
+      }
+      </div>
     </Layout>
   );
 }
