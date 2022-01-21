@@ -1,1 +1,9 @@
-let 이름 :{ name : string } = { name : 'kim' };
+let project :{
+  member : string[],
+  days : number,
+  started : boolean,
+} = {
+  member : ['kim', 'park'],
+  days : 30,
+  started : true,
+}
