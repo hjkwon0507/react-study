@@ -1,9 +1,11 @@
-import './App.css';
-import youtubeData from './data/youtubeData.json';
+import Layout from './components/shared/Layout';
 
 function App() {
-  console.log('youtubeData: ', youtubeData);
-  return <div>시작</div>
+  return (
+    <Layout>
+      <div>콘텐츠영역</div>
+    </Layout>
+  ) 
 }
 
 export default App;
