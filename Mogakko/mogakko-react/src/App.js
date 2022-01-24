@@ -7,6 +7,7 @@ import styles from './App.module.css';
 function App() {
   const [number, setNumber] = useState(1);
   const [isTrue, setIsTrue] = useState(false);
+  const [isBlue, setIsBlue] = useState(false);
 
   function onClickIncrease(){
     setNumber(number+1);
@@ -21,7 +22,7 @@ function App() {
     setIsTrue(!isTrue);
   }
   function onClickColor(){
-    setIsTrue(!isTrue);
+    setIsBlue(!isBlue);
   }
 
   return (
@@ -32,15 +33,15 @@ function App() {
       <Button onClick={onClickMultiply} text="*2" />
       <Button onClick={onClickToggle} text="True?" />
       {isTrue === true && <div>True!</div>}
-      <Button onClick={onClickColor} text="True?" />
+      <Button onClick={onClickColor} text="색 바꾸기" />
       <div className=
         {
-          isTrue === true
-          ? styles.red
-          : styles.blue
+          isBlue === true
+          ? styles.blue
+          : styles.red
         }
       >{
-        isTrue === true
+        isBlue === true
         ? 'True!'
         : 'False!'
       }
