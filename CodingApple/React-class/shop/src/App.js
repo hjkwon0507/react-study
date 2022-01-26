@@ -1,10 +1,11 @@
 /*eslint-disable*/
 
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, lazy, Suspense} from 'react';
 import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
 import './App.css';
 import Data from './data.js';
-import Detail from './Detail.js';
+// import Detail from './Detail.js';
+let Detail = lazy(()=> import ('./Detail.js') );
 import axios from 'axios'
 import { Link, Route, Switch } from 'react-router-dom';
 
@@ -99,7 +100,9 @@ function App() {
       <Route path="/detail/:id">
 
       <stockContext.Provider value={stock}> 
-        <Detail products={products} stock={stock} setStock={setStock} />
+        <Suspense fallback={<div>로딩중이에요</div>}>
+          <Detail products={products} stock={stock} setStock={setStock} />
+        </Suspense>
       </stockContext.Provider>
 
       </Route>
