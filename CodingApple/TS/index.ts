@@ -1,17 +1,28 @@
-let user :string = 'kim';
-let age :undefined | number = undefined;
-let married :boolean = false; 
-let 철수 :(string | number | undefined | boolean)[] = [user, age, married];
-
-let 학교 : {
-  score :(number | boolean)[],
-  teacher :string,
-  friend :string | string[]  
-} 
-= {
-  score : [100, 97, 84],
-  teacher : 'Phil',
-  friend : 'John'
+// Q1
+function sayHi(x? :string){
+  if(x){
+    console.log('안녕하세요' + x)
+  } else{
+    console.log('이름이 없습니다.')
+  }
 }
-학교.score[4] = false;
-학교.friend = ['Lee' , 학교.teacher]
+
+// Q2
+function 자릿수세기(x :number | string) :number{
+  return x.toString().length
+}
+
+// Q3 
+function 결혼가능확률(월소득:number, 집보유여부:boolean, 매력점수:string) :string|void{
+  let score :number = 0;
+  score += 월소득;
+  if (집보유여부 === true){
+    score += 500;
+  }
+  if (매력점수 === '상'){
+    score += 100;
+  }
+  if (score >= 600){
+    return '결혼가능'
+  }
+}
