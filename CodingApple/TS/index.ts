@@ -1,28 +1,31 @@
 // Q1
-function sayHi(x? :string){
-  if(x){
-    console.log('안녕하세요' + x)
-  } else{
-    console.log('이름이 없습니다.')
-  }
+function 클리닝함수(a :(number|string)[]){
+  let 클리닝완료 :number[] = [];
+
+  a.forEach((b)=> {
+    if (typeof b === 'string'){
+      클리닝완료.push(parseFloat(b))
+    } else {
+      클리닝완료.push(b)
+    }
+  })
+  return 클리닝완료
 }
+
+console.log(클리닝함수([123, '3']));
 
 // Q2
-function 자릿수세기(x :number | string) :number{
-  return x.toString().length
-}
+let 철수쌤 = { subject : 'math' }
+let 영희쌤 = { subject : ['science', 'english'] }
+let 민수쌤 = { subject : ['science', 'art', 'korean'] }
 
-// Q3 
-function 결혼가능확률(월소득:number, 집보유여부:boolean, 매력점수:string) :string|void{
-  let score :number = 0;
-  score += 월소득;
-  if (집보유여부 === true){
-    score += 500;
-  }
-  if (매력점수 === '상'){
-    score += 100;
-  }
-  if (score >= 600){
-    return '결혼가능'
+function 만들함수(x :{subject : string | string[]}){
+  if (typeof x.subject === 'string'){
+    return x.subject
+  } else if (Array.isArray(x.subject)){
+    return x.subject[x.subject.length -1]
+  } else {
+    return '없음'
   }
 }
+console.log( 만들함수( { subject : ['english', 'art'] }  ) )
