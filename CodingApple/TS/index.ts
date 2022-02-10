@@ -1,23 +1,17 @@
-// Q2
-type MyType = {
-  color? : string,
-  size : number,
-  readonly position : number[]
-}
-
-let 테스트용변수 :MyType = {
-  size : 123,
-  position : [1,2,3]
-}
-
-// Q3
-type Info = {
+type Member = {
   name : string,
-  phone : number,
-  email? : string
+  age : number,
+  plusOne : ( x :number ) => number,
+  changeName : () => void
 }
 
-let 검사 :Info = {
-  name : 'kim',
-  phone : 123
+// Q2 
+type CutType = (x :string) => string
+let cutZero :CutType = function (x){
+  let result = x.replace(/^0+/, "");
+  return result
+}
+function removeDash(x :string) :number{
+  let result = x.replace(/-/g, "");
+  return parseFloat(result)
 }
