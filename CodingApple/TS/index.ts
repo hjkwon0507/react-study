@@ -1,17 +1,7 @@
-type Member = {
-  name : string,
-  age : number,
-  plusOne : ( x :number ) => number,
-  changeName : () => void
-}
+let 링크 = document.querySelectorAll('.naver');
 
-// Q2 
-type CutType = (x :string) => string
-let cutZero :CutType = function (x){
-  let result = x.replace(/^0+/, "");
-  return result
-}
-function removeDash(x :string) :number{
-  let result = x.replace(/-/g, "");
-  return parseFloat(result)
-}
+링크.forEach((a)=>{
+  if (a instanceof HTMLAnchorElement){
+    a.href = 'https://kakao.com'
+  }
+})
