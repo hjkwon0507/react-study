@@ -15,6 +15,10 @@
     {
       "day": 4,
       "id": 4
+    },
+    {
+      "day": 5,
+      "id": 5
     }
   ],
   "words": [
@@ -73,6 +77,34 @@
       "kor": "사과",
       "isDone": false,
       "id": 12
+    },
+    {
+      "day": "3",
+      "eng": "window",
+      "kor": "창문",
+      "isDone": false,
+      "id": 13
+    },
+    {
+      "day": "3",
+      "eng": "computer",
+      "kor": "컴퓨터",
+      "isDone": false,
+      "id": 14
+    },
+    {
+      "day": "3",
+      "eng": "computer",
+      "kor": "컴퓨터",
+      "isDone": false,
+      "id": 15
+    },
+    {
+      "day": "1",
+      "eng": "flower",
+      "kor": "꽃",
+      "isDone": false,
+      "id": 16
     }
   ]
 }
