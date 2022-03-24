@@ -1,4 +1,4 @@
-type Sprites = {
+export type Sprites = {
   back_default: string;
   back_shiny: string;
   front_default: string;
@@ -13,7 +13,7 @@ type Sprites = {
   }
 }
 
-type Type = {
+export type Type = {
   slot: number;
   type: {
     name: string;
@@ -21,7 +21,7 @@ type Type = {
   }
 }
 
-type Stat = {
+export type Stat = {
   base_stat: number;
   effort: number;
   stat: {
@@ -30,7 +30,7 @@ type Stat = {
   }
 }
 
-type Ability = {
+export type Ability = {
   ability: {
     name: string;
     url: string;
@@ -39,56 +39,56 @@ type Ability = {
   slot: number;
 }
 
-type Language = {
+export type Language = {
   name: string;
   url: string;
 }
 
-type Name = {
+export type Name = {
   language: Language;
   name: string;
 }
 
-type Color = {
+export type Color = {
   name: string;
   url: string;
 }
 
-type Version = {
+export type Version = {
   name: string;
   url: string;
 }
 
-type FlavorTextEntry = {
+export type FlavorTextEntry = {
   flavor_text: string;
   language: Language;
   version: Version;
 }
 
-type GrowthRate = {
+export type GrowthRate = {
   name: string;
   url: string;
 }
 
-type EffectEntry = {
+export type EffectEntry = {
   effect: string;
   language: Language;
   short_effect: string;
 }
 
-type SimplePokemonInfo = {
+export type SimplePokemonInfo = {
   name: string;
   url: string;
 }
 
-type DamageRelation = {
+export type DamageRelation = {
   double_damage_from: Array<{ name: string, url: string }>;
   double_damage_to: Array<{ name: string, url: string }>;
   half_damage_from: Array<{ name: string, url: string }>;
   half_damage_to: Array<{ name: string, url: string }>;
 }
 
-type EvolutionDetail = {
+export type EvolutionDetail = {
   min_level: number;
   trigger: {
     name: string;
@@ -96,7 +96,7 @@ type EvolutionDetail = {
   }
 }
 
-type Chain = {
+export type Chain = {
   is_baby: boolean;
   evolution_details: Array<EvolutionDetail>;
   evolves_to: Array<EvolutionTo>;
@@ -106,7 +106,7 @@ type Chain = {
   }
 }
 
-type EvolutionTo = {
+export type EvolutionTo = {
   evolution_details: Array<EvolutionDetail>;
   is_baby: boolean;
   evolves_to: Array<EvolutionTo>;
@@ -116,12 +116,12 @@ type EvolutionTo = {
   }
 }
 
-type ListResponse = {
+export type ListResponse = {
   count: number;
   results: Array<SimplePokemonInfo>;
 }
 
-type PokemonResponse = {
+export type PokemonResponse = {
   id: number;
   name: string;
   order: number;
@@ -134,7 +134,7 @@ type PokemonResponse = {
   types: Array<Type>;
 }
 
-type SpeciesResponse = {
+export type SpeciesResponse = {
   id: number;
   name: string;
   order: number;
@@ -150,7 +150,7 @@ type SpeciesResponse = {
   }
 }
 
-type AbilityResponse = {
+export type AbilityResponse = {
   id: number;
   name: string;
   names: Array<Name>;
@@ -158,13 +158,13 @@ type AbilityResponse = {
   effect_entries: Array<EffectEntry>;
 }
 
-type TypeResponse = {
+export type TypeResponse = {
   id: number;
   name: string;
   damage_relations: DamageRelation;
 }
 
-type EvolutionChainResponse = {
+export type EvolutionChainResponse = {
   id: number;
   chain: Chain;
 }
