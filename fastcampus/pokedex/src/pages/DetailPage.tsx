@@ -1,15 +1,25 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+// import { useParams } from "react-router-dom";
+import Tabs from "../components/Tabs";
 
-type Params = {
-  id: string;
-}
+// type Params = {
+//   id: string;
+// }
+
+type Tab = 'about' | 'status' | 'evolution';
 
 const DetailPage: React.FC = () => {
-  const { id } = useParams<Params>();
+  // const { id } = useParams<Params>();
+  const [selectedTab, setSelectedTab] = useState<Tab>('about');
+
+  const handleClick = (tab: Tab) => {
+    setSelectedTab(tab);
+  }
 
   return (
-    <div>DetailPage id: {id}</div>
+    <div>
+      <Tabs tab={selectedTab} onClick={handleClick} color={{name: "red", url: ""}} />
+    </div>
   )
 }
 
