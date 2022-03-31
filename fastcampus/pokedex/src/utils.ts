@@ -38,3 +38,6 @@ export const mapTypeToHex = (type?: string) => { // 포켓몬의 타입를 받�
     default: return '#6B7280';
   }
 }
+
+export const formatNumbering = (index: number | string): string => 
+    `#${(typeof index === 'number' ? String(index) : index).padStart(3, '0')}`

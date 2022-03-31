@@ -2,10 +2,10 @@ import React from 'react';
 import styled from '@emotion/styled/macro';
 
 import { Color, Type } from '../types';
-import { mapColorToHex, mapTypeToHex } from '../utils';
+import { mapColorToHex, mapTypeToHex, formatNumbering } from '../utils';
 
 type Props = {
-  id: string;
+  id?: string;
   name?: string;
   types?: Array<Type>;
   color?: Color;
@@ -89,18 +89,20 @@ const Image = styled.img`
 `;
 
 const PokemonInfo: React.FC<Props> = ({ id, name, color, types }) => {
-  const formatNumbering = (index: string): string => {
-    return `#${index.padStart(3, '0')}`
-  }
-
   return (
     <Base color={mapColorToHex(color?.name)}>
       <ImageWrapper>
-        <Image src="/assets/poketball.svg" />
+        <Image src="/assets/pocketball.svg" />
       </ImageWrapper>
       <InfoWrapper>
         <Name>{name}</Name>
-        <Index>{formatNumbering(id)}</Index>
+        {
+          id && (
+            <Index>
+              {formatNumbering(id)}
+            </Index>
+          )
+        }
       </InfoWrapper>
       <TypeList>
         {

@@ -58,22 +58,27 @@ const Gauge = styled.div<{ percentage: number; color: string; }>`
 `;
 
 interface Props {
-  state: Array<Stat>;
-  color: Color;
+  isLoading: boolean;
+  stats?: Array<Stat>;
+  color?: Color;
 }
 
-const Stats: React.FC<Props> = ({ state, color }) => {
+const Stats: React.FC<Props> = ({ stats, color }) => {
   return (
     <Base>
       <Title color={mapColorToHex(color?.name)}>Base Stats</Title>
       <List>
-        <ListItem>
-          <Name>name</Name>
-          <Amount>amount</Amount>
-          <GaugeWrapper>
-            <Gauge color={mapColorToHex(color?.name)} />
-          </GaugeWrapper>
-        </ListItem>
+        {
+          stats?.map(({ stat, base_stat }, idx) => (
+            <ListItem>
+              <Name>{stat.name}</Name>
+              <Amount>{base_stat}</Amount>
+              <GaugeWrapper>
+                <Gauge percentage={(base_stat / 255) * 100} color={mapColorToHex(color?.name)} />
+              </GaugeWrapper>
+            </ListItem>
+          ))
+        }
       </List>
     </Base>
   )
