@@ -6,7 +6,7 @@ import Tabs from "../components/Tabs";
 //   id: string;
 // }
 
-type Tab = 'about' | 'status' | 'evolution';
+type Tab = 'about' | 'stats' | 'evolution';
 
 const DetailPage: React.FC = () => {
   // const { id } = useParams<Params>();

@@ -28,8 +28,8 @@ const TabButton = styled.button<{ active?: boolean; color: string; }>`
 `;
 
 interface Props {
-  tab: 'about' | 'status' | 'evolution' ;
-  onClick: (tab: 'about' | 'status' | 'evolution') => void;
+  tab: 'about' | 'stats' | 'evolution' ;
+  onClick: (tab: 'about' | 'stats' | 'evolution') => void;
   color?: Color;
 }
 
@@ -40,8 +40,8 @@ const Tabs: React.FC<Props> = ({ tab, onClick, color }) => {
       <ListItem onClick={()=> onClick('about')}>
         <TabButton active={tab === 'about'} color={mapColorToHex(color?.name)}>About</TabButton>
       </ListItem>
-      <ListItem onClick={()=> onClick('status')}>
-        <TabButton active={tab === 'status'} color={mapColorToHex(color?.name)}>Status</TabButton>
+      <ListItem onClick={()=> onClick('stats')}>
+        <TabButton active={tab === 'stats'} color={mapColorToHex(color?.name)}>stats</TabButton>
       </ListItem>
       <ListItem onClick={()=> onClick('evolution')}>
         <TabButton active={tab === 'evolution'} color={mapColorToHex(color?.name)}>Evolution</TabButton>
