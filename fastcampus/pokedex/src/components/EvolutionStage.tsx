@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled/macro";
 import { Color } from "../types";
 import { mapColorToHex } from "../utils";
+import { usePokemonQueries } from "../hooks/usePokemon";
 
 const DividerWrapper = styled.div`
   display: flex;
@@ -52,18 +53,20 @@ interface Props {
   }
 }
 
-const EvolutionStage: React.FC<Props> = ({ level, color }) => {
+const EvolutionStage: React.FC<Props> = ({ level, color, from, to }) => {
+  const [prev, next] = usePokemonQueries([from.name, to.name])
+
   return (
     <Base>
       <ImageWrapper>
-        <Image />
+        <Image src={prev.data?.data.sprites.other['official-artwork'].front_default} />
       </ImageWrapper>
       <DividerWrapper>
-        <Text color={mapColorToHex(color?.name)} />
+        {level && <Text color={mapColorToHex(color?.name)}>{`Level: ${level}`}</Text>}
         <Divider />
       </DividerWrapper>
       <ImageWrapper>
-        <Image />
+        <Image src={next.data?.data.sprites.other['official-artwork'].front_default} />
       </ImageWrapper>
     </Base>
   )

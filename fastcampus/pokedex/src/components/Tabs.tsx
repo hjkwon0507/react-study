@@ -5,9 +5,9 @@ import { mapColorToHex } from "../utils";
 
 const List = styled.ul`
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
+  justify-content: center;
+  padding: 0;
 `;
 
 const ListItem = styled.li`
