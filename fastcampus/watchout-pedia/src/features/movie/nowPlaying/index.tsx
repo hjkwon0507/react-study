@@ -5,14 +5,9 @@ import Card from "../../../components/Card";
 import Slider from "../../../components/Slider";
 
 const Base = styled.div`
-  margin: 62px 0 42px;
 `;
 
 const Title = styled.h4`
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 30px;
-  padding: 12px 0 14px;
 `;
 
 
@@ -24,7 +19,7 @@ const NowPlayingSection: React.FC = () => {
 
   return (
     <Base>
-      <Title>최근 개봉작</Title>
+      <Title>현재 상영중</Title>
       {
         isLoading || !data ? (
           <div>Loading...</div>

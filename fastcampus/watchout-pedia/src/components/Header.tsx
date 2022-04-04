@@ -35,7 +35,7 @@ const Menu = styled.li`
   align-items: center;
   height: 62px;
   flex-shrink: 0;
-  &:not(:first-child) { // 첫번째 항목이 아닐 때 
+  &:not(:first-of-type) { // 첫번째 항목이 아닐 때 
     margin-left: 24px;
   }
 `;
