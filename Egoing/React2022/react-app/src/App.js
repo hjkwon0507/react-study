@@ -1,8 +1,8 @@
 import './App.css';
 
-function Header(){
+function Header(props){
   return <header>
-    <h1><a href="/">REACT</a></h1>
+    <h1><a href="/">{props.title}</a></h1>
   </header>
 }
 function Nav(){
@@ -14,19 +14,19 @@ function Nav(){
     </ol>
   </nav>
 }
-function Article(){
+function Article(props){
   return <article>
-    <h2>Welcome</h2>
-    Hello, WEB
+    <h2>{props.title}</h2>
+    {props.body}
   </article>
 }
 
 function App() {
   return (
     <div>
-      <Header></Header>
+      <Header title="REACT"></Header>
       <Nav></Nav>
-      <Article></Article>
+      <Article title="Welcome" body="Hello, WEB"></Article>
     </div>
   );
 }
