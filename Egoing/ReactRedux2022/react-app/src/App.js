@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './style.css';
+import { createStore } from 'redux';
 
 export default function App() {
   const [number, setNumber] = useState(1);
