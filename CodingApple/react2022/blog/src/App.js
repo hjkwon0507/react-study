@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <div>
+      <div class="black-nav">
         <h4>블로그임</h4>
       </div>
     </div>
