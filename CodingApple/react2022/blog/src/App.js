@@ -1,10 +1,10 @@
+/* eslint-disable */
+
 import './App.css';
 import { useState } from 'react';
 
 function App() {
 
-  // post 라는 변수
-  let post = '강남 우동 맛집';
   let [글제목, b] = useState(['남자코트 추천', '강남 우동맛집', '파이썬독학']);
 
   return (
