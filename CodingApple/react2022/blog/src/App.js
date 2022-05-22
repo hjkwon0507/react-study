@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 function App() {
 
-  let [글제목, 글제목변경] = useState(['남자코트 추천', '강남 우동맛집', '파이썬독학']);
+  let [title, setTitle] = useState(['남자코트 추천', '강남 우동맛집', '파이썬독학']);
   let [like, setLike] = useState(0);
 
   return (
@@ -15,27 +15,27 @@ function App() {
       </div>
 
       <button onClick={()=>{
-        let newTitle = [...글제목];
+        let newTitle = [...title];
         newTitle = newTitle.sort();
-        글제목변경(newTitle);
+        setTitle(newTitle);
       }}>가나다순정렬</button>
 
       <button onClick={()=>{
-        let copy = [...글제목];
+        let copy = [...title];
         copy[0] = '여자코트 추천';
-        글제목변경(copy);
+        setTitle(copy);
       }}>글수정</button>
 
       <div className="list">
-        <h4>{ 글제목[0] } <span onClick={ ()=>{ setLike(like+1) } }>👍🏼</span> {like} </h4>
+        <h4>{ title[0] } <span onClick={ ()=>{ setLike(like+1) } }>👍🏼</span> {like} </h4>
         <p>2월 17일 발행</p>
       </div>
       <div className="list">
-        <h4>{ 글제목[1] }</h4>
+        <h4>{ title[1] }</h4>
         <p>2월 17일 발행</p>
       </div>
       <div className="list">
-        <h4>{ 글제목[2] }</h4>
+        <h4>{ title[2] }</h4>
         <p>2월 17일 발행</p>
       </div>
 
