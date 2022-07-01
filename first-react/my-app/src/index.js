@@ -4,12 +4,12 @@ import './index.css';
 // import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import Clock from './chapter_03/clock';
+import SignUp from "./chapter_11/SignUp";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Clock />
+    <SignUp />
   </React.StrictMode>
 );
 
